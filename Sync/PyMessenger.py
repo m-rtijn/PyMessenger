@@ -104,6 +104,11 @@ def Server():
                 break
         conn.close()
         print("Connection closed.")
+        choice = raw_input("Do you want to keep listening for new connections or stop? y/n")
+        if choice == "y":
+            pass
+        else:
+            return
 
 def main():
     print("PyMessenger")
@@ -114,5 +119,7 @@ def main():
             Client()
         elif cmd == "server":
             Server()
+        elif cmd == "exit":
+            sys.exit()
 
 main()
