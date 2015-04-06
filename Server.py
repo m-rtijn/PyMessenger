@@ -1,4 +1,8 @@
+# Made by Tijndagamer and released under the MIT license
+# Copyright 2015
+
 import socket
+import time
 import sys
 
 # Setting everything up
@@ -20,19 +24,19 @@ while True:
 
         # Receiving
         recvMsg = conn.recv(bufferSize)
-        #print("(" + addr[0] + ")> " + str(recvMsg))
         if not recvMsg: 
             break
         
         # Check for left message
         try:
             if recvMsg == "--LEFT--":
-                print("Client has left, terminating connection")
+                print("Client has left, terminating connection.")
                 conn.close()
                 break
         except:
             pass
 
+        # Print recvMsg
         print("(" + addr[0] + ")> " + str(recvMsg))
 
         # Sending
@@ -45,6 +49,10 @@ while True:
             break
 
         # Send msg
-        conn.send(msg)
-
+        try:
+            conn.send(msg)
+        except:
+            print("Error sending message, terminating connection.")
+            break
     conn.close()
+    print("Connection closed.")

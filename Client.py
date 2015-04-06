@@ -1,8 +1,11 @@
+# Made by Tijndagamer and released under the MIT license
+# Copyright 2015
+
 import socket
 import time
 import sys
 
-# Setting everything up
+# Global variables
 tcpHostIP = raw_input("tcpHostIP =")
 tcpPort = 5005
 bufferSize = 1024
@@ -24,28 +27,27 @@ while True:
     try:
         sock.send(msg)
     except:
-        print("Error sending message, terminating connection")
+        print("Error sending message, terminating connection.")
         break
 
     # Receiving
     try:
         recvMsg = sock.recv(bufferSize)
     except:
-        print("Error receiving message, terminating connection")
+        print("Error receiving message, terminating connection.")
         break
     
     # Check for left message
     try:
         if recvMsg == "--LEFT--":
-            print("Server has left, terminating connection")
+            print("Server has left, terminating connection.")
             break
     except:
         pass
 
-    # Print the recvMsg
+    # Print recvMsg
     print("(" + tcpHostIP + ")> " + str(recvMsg))
 
 sock.close()
 time.sleep(0.1)
 sys.exit()
-
